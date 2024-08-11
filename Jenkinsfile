@@ -43,8 +43,8 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
-            junit '**/TestResults/*.trx'
+            bat 'dotnet test SeleniumIde.sln --logger "trx;LogFileName=TestResults.trx" --results-directory SeleniumIDE/TestResults'
+           junit 'SeleniumIDE/TestResults/TestResults.trx'
         }
     }
 }
