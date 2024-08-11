@@ -46,7 +46,7 @@ pipeline {
 
     post {
        always{
-            arhiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: TestResults
+            archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
             step([
                $class: 'MSTestPublisher',
                testResultsFile: '**/TestResults/*.trx'
