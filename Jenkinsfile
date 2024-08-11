@@ -18,7 +18,6 @@ pipeline {
             }
         }
 
-       
         stage('Restore dependencies') {
             steps {
                 // Restore dependencies using the solution file
@@ -43,8 +42,9 @@ pipeline {
 
     post {
         always {
-            bat 'dotnet test SeleniumIde.sln --logger "trx;LogFileName=TestResults.trx" --results-directory SeleniumIDE/TestResults'
-           junit 'SeleniumIDE/TestResults/TestResults.trx'
+            // Archive the test results artifacts without processing them with junit
+            archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
+			junit 'SeleniumIDE/TestResults/TestResults.trx'
         }
     }
 }
