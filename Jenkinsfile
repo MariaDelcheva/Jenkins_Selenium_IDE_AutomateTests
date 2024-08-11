@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout code') {
             steps {
                 // Checkout code from GitHub and specify the branch
-                git branch: 'main', url: 'https://github.com/MariaDelcheva/Jenkins_Selenium_IDE_AutomateTests'
+                git branch: 'main', url: 'https://github.com/MariaDelcheva/Jenkins_Selenium_IDE_AutomateTests.git'
             }
         }
 
