@@ -42,9 +42,13 @@ pipeline {
 
     post {
         always {
-            // Archive the test results artifacts without processing them with junit
+            
             archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
-			junit 'SeleniumIDE/TestResults/TestResults.trx'
+			step([
+			    $class: 'MSTestPublisher',
+				testResultsFile: '**/TestResults/*.trx'
+			])
+			
         }
     }
 }
